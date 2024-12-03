@@ -61,10 +61,9 @@ func main() {
 
 	links := ""
 	for _, n := range names {
-		links += fmt.Sprintf("<li><a href=\"%s.html\">%s</a></li>", n, n)
+		links += fmt.Sprintf("<a href=\"%s.html\">%s</a><br /><br /><br /><br /><br /><br />", n, n)
 	}
-	links = "<ul>" + links + "</ul>"
 
-	index := "<h1>secret santa!</h1><p>Click your name to see your match... no snooping</p>" + links
+	index := "<h1>secret santa!</h1><p>Click your name to see your match... no snooping</p><br /><br /><br /><br /><br /><br />" + links
 	os.WriteFile("out/index.html", []byte(index), 0644)
 }
