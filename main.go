@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 )
@@ -27,7 +28,7 @@ var (
 func main() {
 	assignments := make(map[string]string)
 
-	pool := make([]string, 0, len(names))
+	var pool []string
 	for _, n := range names {
 		pool = append(pool, n)
 	}
@@ -57,4 +58,13 @@ func main() {
 	for k, v := range assignments {
 		os.WriteFile("out/"+k+".html", []byte(v+"\n"), 0644)
 	}
+
+	links := ""
+	for _, n := range names {
+		links += fmt.Sprintf("<li><a href=\"%s.html\">%s</a></li>", n, n)
+	}
+	links = "<ul>" + links + "</ul>"
+
+	index := "<h1>secret santa!</h1><p>Click your name to see your match... no snooping</p>" + links
+	os.WriteFile("out/index.html", []byte(index), 0644)
 }
